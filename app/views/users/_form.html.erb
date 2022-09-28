@@ -1,4 +1,4 @@
-<%= form_with model:book,local:true do |f| %>
+<%= form_with model:book, local:true do |f| %>
   <div class="form-group">
     <%= f.label :title %>
     <%= f.text_field :title, class: 'form-control book_title' %>
@@ -9,5 +9,10 @@
   </div>
   <div class="form-group">
     <%= f.submit class: 'btn btn-success' %>
+    <%# if request.path_info == books_path %>
+      <%#= f.submit "Update Book", class: 'btn btn-success' %>
+    <%#else%>
+      <%#= f.submit "Create Book", class: 'btn btn-success' %>
+     <%# end %>
   </div>
 <% end %>
