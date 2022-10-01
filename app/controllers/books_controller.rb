@@ -6,11 +6,14 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @book_new = Book.new
+    @favorites_count = Favorite.where(book_id: @book.id).count
+    @comment = current_user.book_comments.new
   end
 
   def index
-    @book = Book.new
+    @book_new = Book.new
     @books = Book.all
+
   end
 
   def create
@@ -33,7 +36,7 @@ class BooksController < ApplicationController
     else
       redirect_to books_path
     end
-      
+
   end
 
   def update
@@ -56,7 +59,7 @@ class BooksController < ApplicationController
   end
 
   private
-  
+
   #ログイン中にURLを入力すると他人が投稿した本の編集ページに遷移できない
   def ensure_correct_user
     @book = Book.find(params[:id])
